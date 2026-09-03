@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taneesh — Люди</title>
-  <meta name="theme-color" content="#0f0f0f" />
+  <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
   <link rel="stylesheet" href="assets/app.css" />
 </head>
@@ -37,12 +37,7 @@
 
   <script src="assets/app.js"></script>
   <script>
-    document.getElementById("people").innerHTML = TaneeshData.profiles.map((p) => `
-      <button type="button" class="user-card" data-toast="${p.name}">
-        <div class="user-avatar"><img src="${p.img}" alt="" loading="lazy" /></div>
-        <strong style="display:block;margin-top:10px;font-size:15px;font-weight:700">${p.name}</strong>
-        <span style="font-size:13px;color:var(--muted)">${p.meta}</span>
-      </button>`).join("");
+    document.getElementById("people").innerHTML = TaneeshData.profiles.map((p) => TaneeshUI.profileCard(p, { tall: true })).join("");
     TaneeshUI.initCommon();
   </script>
 </body>

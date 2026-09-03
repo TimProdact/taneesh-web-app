@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taneesh — Главная</title>
-  <meta name="theme-color" content="#0f0f0f" />
+  <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
   <link rel="stylesheet" href="assets/app.css" />
 </head>
@@ -39,7 +39,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Мои подборки</h2>
-          <button class="more" type="button" data-toast="Мои подборки" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+          <button class="show-all" type="button" data-toast="Мои подборки">Все</button>
         </div>
         <div class="rail-wrap" data-rail>
           <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -51,7 +51,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Новые профили</h2>
-          <a class="more" href="people.html" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a>
+          <a class="show-all" href="people.html">Все</a>
         </div>
         <div class="rail-wrap" data-rail>
           <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -63,7 +63,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Бесплатные мероприятия</h2>
-          <button class="more" type="button" data-toast="Бесплатные мероприятия" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+          <button class="show-all" type="button" data-toast="Бесплатные мероприятия">Все</button>
         </div>
         <div class="rail-wrap" data-rail>
           <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -75,7 +75,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Новые комментарии</h2>
-          <button class="more" type="button" data-toast="Комментарии" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+          <button class="show-all" type="button" data-toast="Комментарии">Все</button>
         </div>
         <div class="comments" id="comments"></div>
       </section>
@@ -127,11 +127,7 @@
     document.getElementById("selections").innerHTML = D.selectionEvents.map((e, i) => U.eventCard(e, i, "sel")).join("");
     document.getElementById("free").innerHTML = D.freeEvents.map((e, i) => U.eventCard(e, i, "free")).join("");
     document.getElementById("allEvents").innerHTML = all.map((e, i) => U.gridCard(e, i)).join("");
-    document.getElementById("profiles").innerHTML = D.profiles.slice(0, 5).map((p) => `
-      <button type="button" class="user" data-toast="${p.name}">
-        <div class="user-avatar"><img src="${p.img}" alt="" loading="lazy" /></div>
-        <strong>${p.name}</strong><span>${p.meta}</span>
-      </button>`).join("");
+    document.getElementById("profiles").innerHTML = D.profiles.slice(0, 5).map((p) => U.profileCard(p)).join("");
     document.getElementById("comments").innerHTML = D.comments.map((c) => `
       <button type="button" class="comment" data-toast="${c.event}">
         <div class="comment-av"><img src="${c.av}" alt="" /></div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taneesh — Чаты</title>
-  <meta name="theme-color" content="#0f0f0f" />
+  <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
   <link rel="stylesheet" href="assets/app.css" />
 </head>
@@ -43,11 +43,7 @@
 
   <script src="assets/app.js"></script>
   <script>
-    document.getElementById("interested").innerHTML = TaneeshData.interested.map((p) => `
-      <button type="button" class="user" data-toast="${p.name}">
-        <div class="user-avatar"><img src="${p.img}" alt="" loading="lazy" /></div>
-        <strong>${p.name}</strong>
-      </button>`).join("");
+    document.getElementById("interested").innerHTML = TaneeshData.interested.map((p) => TaneeshUI.profileCard(p)).join("");
 
     document.getElementById("chats").innerHTML = TaneeshData.chats.map((c) => `
       <button type="button" class="chat-item" data-toast="${c.name}">

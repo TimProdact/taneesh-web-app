@@ -65,7 +65,7 @@ window.TaneeshUI = {
   eventCard(ev, i, list) {
     return `
       <button type="button" class="event-h" data-toast="${ev.title}">
-        <div class="event-h-media">
+        <div class="event-h-media media-scrim">
           <img src="${ev.img}" alt="" loading="lazy" />
           <span class="price ${ev.free ? "free" : "paid"}">${ev.price}</span>
           <span class="heart ${ev.liked ? "is-on" : ""}" data-like="${list}:${i}" role="button" aria-label="Избранное">
@@ -86,7 +86,7 @@ window.TaneeshUI = {
   gridCard(ev, i, list = "all") {
     return `
       <button type="button" class="event-g" data-toast="${ev.title}">
-        <div class="event-h-media">
+        <div class="event-h-media media-scrim">
           <img src="${ev.img}" alt="" loading="lazy" />
           <span class="price ${ev.free ? "free" : "paid"}">${ev.price}</span>
           <span class="heart ${ev.liked ? "is-on" : ""}" data-like="${list}:${i}" role="button" aria-label="Избранное">
@@ -100,6 +100,16 @@ window.TaneeshUI = {
         <div class="event-g-title">${ev.title}</div>
         <div class="date">${ev.date}</div>
         <div class="types">${ev.types.map((t) => `<span class="type">${t}</span>`).join("")}</div>
+      </button>
+    `;
+  },
+
+  profileCard(p, { tall = false } = {}) {
+    return `
+      <button type="button" class="${tall ? "user-card" : "user"}" data-toast="${p.name}">
+        <div class="user-media"><img src="${p.img}" alt="" loading="lazy" /></div>
+        <strong>${p.name}</strong>
+        ${p.meta ? `<span>${p.meta}</span>` : ""}
       </button>
     `;
   },
