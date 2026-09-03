@@ -6,8 +6,8 @@
   <title>Taneesh — Главная</title>
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
-  <link rel="stylesheet" href="assets/tokens.css" />
-  <link rel="stylesheet" href="assets/app.css" />
+  <link rel="stylesheet" href="assets/tokens.css?v=20260904b" />
+  <link rel="stylesheet" href="assets/app.css?v=20260904b" />
 </head>
 <body data-page="home">
   <header class="header t-app-bar" id="header">
@@ -94,38 +94,49 @@
   <nav id="t-nav" class="t-bottom-nav nav" aria-label="Навигация"></nav>
   <div class="toast" id="toast"></div>
 
-  <script src="assets/app.js"></script>
+  <script src="assets/app.js?v=20260904b"></script>
   <script>
-    const D = TaneeshData;
-    const U = TaneeshUI;
-    const all = U.allEvents();
-
-    document.getElementById("banners").innerHTML = D.banners.map((b) => `
-      <a class="banner" href="event.html?id=${b.id}"><img src="${b.img}" alt="" loading="lazy" />
-        <div class="banner-copy"><h3>${b.title}</h3><p>${b.desc}</p><span class="cta t-button t-button--primary">Посмотреть</span></div>
-      </a>`).join("");
-    document.getElementById("selections").innerHTML = D.selectionEvents.map((e, i) => U.eventCard(e, i, "sel")).join("");
-    document.getElementById("free").innerHTML = D.freeEvents.map((e, i) => U.eventCard(e, i, "free")).join("");
-    document.getElementById("allEvents").innerHTML = all.map((e, i) => U.gridCard(e, i)).join("");
-    document.getElementById("profiles").innerHTML = D.profiles.slice(0, 5).map((p) => U.profileCard(p)).join("");
-    document.getElementById("comments").innerHTML = D.comments.map((c) => `
-      <a class="comment" href="event.html?id=${c.eventId}">
-        <div class="comment-av t-avatar t-avatar--sm"><img src="${c.av}" alt="" /></div>
-        <div>
-          <div class="comment-top"><strong>${c.user}</strong><time>${c.time}</time></div>
-          <p class="comment-text">${c.text}</p>
-          <span class="comment-event"><img src="${c.eventImg}" alt="" />${c.event}</span>
-        </div>
-      </a>`).join("");
-
-    document.getElementById("searchInput")?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        location.href = "search.html?q=" + encodeURIComponent(e.target.value || "");
+    (function () {
+      const D = window.TaneeshData;
+      const U = window.TaneeshUI;
+      if (!D || !U) {
+        console.error("TaneeshUI failed to load");
+        return;
       }
-    });
-    U.initRails();
-    U.initCommon();
+      const all = typeof U.allEvents === "function"
+        ? U.allEvents()
+        : [...D.selectionEvents, ...D.freeEvents, ...(D.extraEvents || [])];
+
+      document.getElementById("banners").innerHTML = D.banners.map((b) => `
+        <a class="banner" href="event.html?id=${b.id}"><img src="${b.img}" alt="" loading="lazy" />
+          <div class="banner-copy"><h3>${b.title}</h3><p>${b.desc}</p><span class="cta t-button t-button--primary">Посмотреть</span></div>
+        </a>`).join("");
+      document.getElementById("selections").innerHTML = D.selectionEvents.map((e, i) => U.eventCard(e, i, "sel")).join("");
+      document.getElementById("free").innerHTML = D.freeEvents.map((e, i) => U.eventCard(e, i, "free")).join("");
+      document.getElementById("allEvents").innerHTML = all.map((e, i) => U.gridCard(e, i)).join("");
+      document.getElementById("profiles").innerHTML = D.profiles.slice(0, 5).map((p) => U.profileCard(p)).join("");
+      document.getElementById("comments").innerHTML = D.comments.map((c) => `
+        <a class="comment" href="event.html?id=${c.eventId}">
+          <div class="comment-av t-avatar t-avatar--sm"><img src="${c.av}" alt="" /></div>
+          <div>
+            <div class="comment-top"><strong>${c.user}</strong><time>${c.time}</time></div>
+            <p class="comment-text">${c.text}</p>
+            <span class="comment-event"><img src="${c.eventImg}" alt="" />${c.event}</span>
+          </div>
+        </a>`).join("");
+
+      const search = document.getElementById("searchInput");
+      if (search) {
+        search.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            location.href = "search.html?q=" + encodeURIComponent(e.target.value || "");
+          }
+        });
+      }
+      U.initRails();
+      U.initCommon();
+    })();
   </script>
 </body>
 </html>

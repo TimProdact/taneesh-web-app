@@ -6,8 +6,8 @@
   <title>Taneesh — Люди</title>
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
-  <link rel="stylesheet" href="assets/tokens.css" />
-  <link rel="stylesheet" href="assets/app.css" />
+  <link rel="stylesheet" href="assets/tokens.css?v=20260904b" />
+  <link rel="stylesheet" href="assets/app.css?v=20260904b" />
 </head>
 <body data-page="people">
   <header class="header t-app-bar" id="header">
@@ -29,7 +29,7 @@
   <nav id="t-nav" class="t-bottom-nav nav" aria-label="Навигация"></nav>
   <div class="toast" id="toast"></div>
 
-  <script src="assets/app.js"></script>
+  <script src="assets/app.js?v=20260904b"></script>
   <script>
     document.getElementById("people").innerHTML = TaneeshData.profiles.map((p) => TaneeshUI.profileCard(p, { tall: true })).join("");
     TaneeshUI.initCommon();

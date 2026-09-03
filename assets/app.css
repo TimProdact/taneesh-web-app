@@ -139,14 +139,18 @@ img { display: block; max-width: 100%; }
   color: var(--t-color-on-surface);
 }
 .brand-logo {
-  display: none;
+  display: block;
   flex-shrink: 0;
   line-height: 0;
 }
 .brand-logo img {
   display: block;
-  height: 24px;
+  height: 22px;
   width: auto;
+}
+/* Real phone width: hide wordmark so city + Free + avatar fit */
+@media (max-width: 430px) {
+  .brand-logo { display: none; }
 }
 .city {
   display: inline-flex;
