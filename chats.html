@@ -6,11 +6,11 @@
   <title>Taneesh — Чаты</title>
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
   <link rel="stylesheet" href="assets/app.css" />
 </head>
-<body>
-  <!-- ChatsScreen: title Чаты + Интересуются вами + list ChatItemWidget -->
-  <header class="header" id="header">
+<body data-page="chats">
+  <header class="header t-app-bar" id="header">
     <div class="wrap header-inner">
       <h1 class="header-title">Чаты</h1>
     </div>
@@ -18,7 +18,7 @@
 
   <main>
     <div class="wrap page-pad">
-      <section class="section" style="margin-top:0">
+      <section class="section section--flush">
         <div class="section-head">
           <h2>Интересуются вами</h2>
           <button class="show-all" type="button" data-toast="Все">Все</button>
@@ -32,13 +32,7 @@
     </div>
   </main>
 
-  <nav class="nav" aria-label="Навигация">
-    <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3.2 3 10.2V21h6.5v-6h5V21H21V10.2L12 3.2z"/></svg>Главная</a>
-    <a href="near.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.2 7-11a7 7 0 10-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Рядом</a>
-    <a href="favorites.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-9.2-8.2A5.2 5.2 0 0112 5.1a5.2 5.2 0 019.2 6.7C19 15.6 12 20 12 20z"/></svg>Избранное</a>
-    <a href="people.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0111 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15 19a4.2 4.2 0 015.5-4"/></svg>Люди</a>
-    <a class="is-active" href="chats.html"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 18.5 4 21l3.2-1.2A9 9 0 1012 21a8.8 8.8 0 01-4.4-1.2L5 18.5z"/></svg>Чат</a>
-  </nav>
+  <nav id="t-nav" class="t-bottom-nav nav" aria-label="Навигация"></nav>
   <div class="toast" id="toast"></div>
 
   <script src="assets/app.js"></script>
@@ -47,14 +41,14 @@
 
     document.getElementById("chats").innerHTML = TaneeshData.chats.map((c) => `
       <button type="button" class="chat-item" data-toast="${c.name}">
-        <div class="chat-av"><img src="${c.img}" alt="" /></div>
-        <div style="min-width:0">
+        ${TaneeshUI.avatar(c.img, { size: "lg", online: c.online, alt: c.name })}
+        <div class="u-min-0">
           <div class="chat-name">${c.name}</div>
           <div class="chat-preview">${c.preview}</div>
         </div>
         <div class="chat-meta">
           <div>${c.time}</div>
-          ${c.unread ? `<span class="chat-unread">${c.unread}</span>` : ""}
+          ${c.unread ? `<span class="chat-unread t-badge">${c.unread}</span>` : ""}
         </div>
       </button>`).join("");
 

@@ -1,0 +1,128 @@
+/**
+ * Taneesh web DS tokens — semantic only in UI.
+ * Primitives stay here; pages use --t-color-* / --t-space-* / --t-radius-* / --t-type-*.
+ */
+:root {
+  --t-neutral-0: #ffffff;
+  --t-neutral-50: #f9f9f9;
+  --t-neutral-100: #f5f5f5;
+  --t-neutral-200: #eeeeee;
+  --t-neutral-300: #e8e8e8;
+  --t-neutral-500: #888888;
+  --t-neutral-900: #111111;
+  --t-brand-50: #1a3dc564;
+  --t-brand-500: #3dc564;
+  --t-brand-600: #2fae54;
+  --t-white: #ffffff;
+  --t-black: #000000;
+  --t-danger-500: #d01219;
+  --t-success-500: #2f9e5b;
+  --t-warning-500: #e6a700;
+  --t-info-500: #2f6fed;
+
+  --t-color-background: var(--t-neutral-0);
+  --t-color-surface: var(--t-neutral-0);
+  --t-color-surface-subtle: var(--t-neutral-100);
+  --t-color-surface-muted: var(--t-neutral-50);
+  --t-color-surface-selected: var(--t-neutral-200);
+  --t-color-on-surface: var(--t-neutral-900);
+  --t-color-on-surface-variant: var(--t-neutral-500);
+  --t-color-primary: var(--t-brand-500);
+  --t-color-primary-muted: var(--t-brand-50);
+  --t-color-primary-pressed: var(--t-brand-600);
+  --t-color-on-primary: var(--t-white);
+  --t-color-border: var(--t-neutral-300);
+  --t-color-border-focused: var(--t-brand-500);
+  --t-color-disabled: var(--t-neutral-300);
+  --t-color-overlay: rgb(0 0 0 / 60%);
+  --t-color-danger: var(--t-danger-500);
+  --t-color-success: var(--t-success-500);
+  --t-color-warning: var(--t-warning-500);
+  --t-color-info: var(--t-info-500);
+
+  --t-glass-fill: color-mix(in srgb, var(--t-color-on-primary) 18%, transparent);
+  --t-glass-stroke: color-mix(in srgb, var(--t-color-on-primary) 22%, transparent);
+  --t-glass-pill: color-mix(in srgb, var(--t-color-on-primary) 16%, transparent);
+  --t-scrim-top: rgb(0 0 0 / 40%);
+  --t-scrim-bottom: rgb(0 0 0 / 60%);
+  --t-on-media: var(--t-color-on-primary);
+
+  --t-space-4: 4px;
+  --t-space-8: 8px;
+  --t-space-12: 12px;
+  --t-space-16: 16px;
+  --t-space-24: 24px;
+  --t-space-32: 32px;
+  --t-space-48: 48px;
+  --t-space-64: 64px;
+
+  --t-radius-xs: 4px;
+  --t-radius-sm: 8px;
+  --t-radius-md: 12px;
+  --t-radius-lg: 16px;
+  --t-radius-xl: 24px;
+  --t-radius-pill: 32px;
+  --t-radius-full: 999px;
+
+  --t-min-tap: 44px;
+  --t-toolbar: 56px;
+  --t-nav-h: 64px;
+  --t-max: 1120px;
+
+  --t-shadow-1: 0 2px 8px rgb(0 0 0 / 8%);
+  --t-shadow-2: 0 6px 16px rgb(0 0 0 / 12%);
+  --t-duration-fast: 150ms;
+  --t-duration-normal: 250ms;
+
+  --t-font: "SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  --t-type-display: 700 28px / 1.2 var(--t-font);
+  --t-type-title: 600 20px / 1.25 var(--t-font);
+  --t-type-title-sm: 600 16px / 1.25 var(--t-font);
+  --t-type-body: 400 15px / 1.4 var(--t-font);
+  --t-type-body-sm: 400 14px / 1.35 var(--t-font);
+  --t-type-label: 500 13px / 1.2 var(--t-font);
+  --t-type-caption: 500 10px / 1.1 var(--t-font);
+  --t-type-button: 600 16px / 1.2 var(--t-font);
+  --t-type-nav: 500 10px / 1.1 var(--t-font);
+
+  /* Back-compat aliases used by app.css */
+  --space-1: var(--t-space-4);
+  --space-2: var(--t-space-8);
+  --space-3: var(--t-space-12);
+  --space-4: var(--t-space-16);
+  --space-5: var(--t-space-24);
+  --space-6: var(--t-space-32);
+  --radius-sm: var(--t-radius-sm);
+  --radius-md: var(--t-radius-md);
+  --radius-lg: var(--t-radius-lg);
+  --radius-pill: var(--t-radius-pill);
+  --min-tap: var(--t-min-tap);
+  --toolbar: var(--t-toolbar);
+  --nav-h: var(--t-nav-h);
+  --accent: var(--t-color-primary);
+  --accent-muted: var(--t-color-primary-muted);
+  --on-accent: var(--t-color-on-primary);
+  --surface: var(--t-color-background);
+  --surface-1: var(--t-color-surface-subtle);
+  --surface-2: var(--t-color-surface-selected);
+  --surface-muted: var(--t-color-surface-muted);
+  --border: var(--t-color-border);
+  --text: var(--t-color-on-surface);
+  --muted: var(--t-color-on-surface-variant);
+  --danger: var(--t-color-danger);
+  --shadow-low: var(--t-shadow-1);
+  --max: var(--t-max);
+  --font: var(--t-font);
+}
+
+.t-theme-dark {
+  --t-color-background: #111111;
+  --t-color-surface: #111111;
+  --t-color-surface-subtle: #1a1a1a;
+  --t-color-surface-muted: #1a1a1a;
+  --t-color-surface-selected: #242424;
+  --t-color-on-surface: #ffffff;
+  --t-color-on-surface-variant: #aaaaaa;
+  --t-color-border: #2c2c2c;
+  --t-color-overlay: rgb(0 0 0 / 80%);
+}
