@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Редактирование</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-shell="stack">
+  <header class="header t-app-bar" id="header">
+    <div class="wrap header-inner">
+      <a class="icon-btn t-icon-button" href="profile.html" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <h1 class="header-title">Редактировать</h1>
+    </div>
+  </header>
+  <main>
+    <div class="wrap page-pad">
+      <a class="t-list-row" href="upload-photo.html"><div><strong>Фото</strong><small>Изменить</small></div></a>
+      <a class="t-list-row" href="change-name.html"><div><strong>Имя</strong><small>Тимур</small></div></a>
+      <a class="t-list-row" href="bio.html"><div><strong>О себе</strong></div></a>
+      <a class="t-list-row" href="select-interests.html"><div><strong>Интересы</strong></div></a>
+      <a class="t-list-row" href="select-status.html"><div><strong>Статус</strong></div></a>
+      <a class="t-list-row" href="select-location.html"><div><strong>Район</strong><small>Яккасарай</small></div></a>
+    </div>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="assets/app.js"></script>
+  <script>TaneeshUI.initCommon();</script>
+</body>
+</html>

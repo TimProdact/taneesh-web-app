@@ -1,6 +1,10 @@
 # Taneesh Web App (mock)
 
-Пять вкладок гостевого приложения. Канон стилей — CSS-токены + атомы `.t-*` (зеркало Flutter `packages/design_system`).
+Пять вкладок гостевого приложения плюс внутренние и системные экраны. Канон стилей — CSS-токены + атомы `.t-*` (зеркало Flutter `packages/design_system`).
+
+Каталог файлов: [PAGES.md](PAGES.md). Старт как в приложении: `splash.html`.
+
+Live: https://timprodact.github.io/taneesh-web-app/
 
 | Страница | Файл | `data-page` |
 |----------|------|-------------|

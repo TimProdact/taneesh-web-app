@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Геолокация</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-shell="stack">
+  <header class="header t-app-bar" id="header">
+    <div class="wrap header-inner">
+      <a class="icon-btn t-icon-button" href="verification-login.html" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <h1 class="header-title">Геолокация</h1>
+    </div>
+  </header>
+  <main>
+    <div class="wrap page-pad">
+      <h2 class="detail-title">Разрешите геолокацию</h2>
+      <p class="detail-body">Нужна, чтобы показать события рядом.</p>
+      <div class="map-ph">Карта (мок)</div>
+      <a class="t-button t-button--primary t-button--block" href="index.html">Разрешить</a>
+      <a class="t-button t-button--ghost t-button--block" href="index.html">Не сейчас</a>
+    </div>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="assets/app.js"></script>
+  <script>TaneeshUI.initCommon();</script>
+</body>
+</html>

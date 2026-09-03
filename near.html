@@ -12,9 +12,9 @@
 <body data-page="near">
   <header class="header t-app-bar" id="header">
     <div class="wrap header-inner">
-      <button class="icon-btn t-icon-button" type="button" data-toast="Карта" aria-label="Карта">
+      <a class="icon-btn t-icon-button" href="map.html" aria-label="Карта">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3V7z"/><path d="M9 4v13M15 7v13"/></svg>
-      </button>
+      </a>
       <h1 class="header-title">Рядом</h1>
       <div class="header-spacer"></div>
       <button class="icon-btn t-icon-button" type="button" data-toast="Фильтры" aria-label="Фильтры">
@@ -36,7 +36,7 @@
   <script src="assets/app.js"></script>
   <script>
     document.getElementById("near").innerHTML = TaneeshData.nearEvents.map((ev) => `
-      <button type="button" class="near-card t-event-card" data-toast="${ev.title}">
+      <a class="near-card t-event-card" href="${TaneeshUI.eventHref(ev)}">
         <img src="${ev.img}" alt="" loading="lazy" />
         <span class="price ${ev.free ? "free" : "paid"}">${ev.price}</span>
         <span class="heart t-glass-icon ${ev.liked ? "is-on" : ""}" data-like="near" role="button" aria-label="Избранное">
@@ -47,7 +47,7 @@
           <p>${ev.address}</p>
           <div class="types">${ev.types.map((t) => `<span class="type t-chip t-chip--on-media">${t}</span>`).join("")}</div>
         </div>
-      </button>
+      </a>
     `).join("");
     TaneeshUI.initCommon();
   </script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Интересы</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-shell="stack">
+  <header class="header t-app-bar" id="header">
+    <div class="wrap header-inner">
+      <a class="icon-btn t-icon-button" href="select-status.html" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <h1 class="header-title">Интересы</h1>
+    </div>
+  </header>
+  <main>
+    <div class="wrap page-pad">
+      <p class="detail-meta">Шаг 4</p>
+      <h2 class="detail-title">Что вам близко?</h2>
+      <div class="chip-wrap">
+        <button class="t-chip is-on" type="button" data-chip>Джаз</button>
+        <button class="t-chip is-on" type="button" data-chip>Стендап</button>
+        <button class="t-chip" type="button" data-chip>Йога</button>
+        <button class="t-chip" type="button" data-chip>Вечеринки</button>
+        <button class="t-chip" type="button" data-chip>Нетворкинг</button>
+        <button class="t-chip" type="button" data-chip>Фото</button>
+        <button class="t-chip" type="button" data-chip>Стартапы</button>
+        <button class="t-chip" type="button" data-chip>Спорт</button>
+      </div>
+      <a class="t-button t-button--primary t-button--block" href="upload-photo.html">Далее</a>
+    </div>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="assets/app.js"></script>
+  <script>TaneeshUI.initCommon();</script>
+</body>
+</html>

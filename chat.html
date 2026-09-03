@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Чат</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-shell="stack">
+  <header class="header t-app-bar" id="header">
+    <div class="wrap header-inner">
+      <a class="icon-btn t-icon-button" href="chats.html" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <a id="toUser" class="header-title" href="#"></a>
+      <div class="header-spacer"></div>
+      <button class="icon-btn t-icon-button" type="button" data-toast="Ещё" aria-label="Ещё"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>
+    </div>
+  </header>
+  <main><div class="wrap page-pad chat-thread" id="thread"></div></main>
+  <form class="composer wrap" id="form">
+    <label class="search t-search search-grow"><input type="text" id="msg" placeholder="Сообщение" autocomplete="off" /></label>
+    <button class="t-button t-button--primary" type="submit">Отпр.</button>
+  </form>
+  <div class="toast" id="toast"></div>
+  <script src="assets/app.js"></script>
+  <script>
+    const c = TaneeshUI.chatById(TaneeshUI.query("id"));
+    document.getElementById("toUser").textContent = c.name;
+    document.getElementById("toUser").href = "user.html?id=" + c.id;
+    const thread = document.getElementById("thread");
+    const paint = () => {
+      thread.innerHTML = c.messages.map((m) => `<div class="bubble ${m.from === "me" ? "bubble--out" : "bubble--in"}">${m.text}</div>`).join("");
+    };
+    paint();
+    document.getElementById("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = document.getElementById("msg").value.trim();
+      if (!v) return;
+      c.messages.push({ from: "me", text: v });
+      document.getElementById("msg").value = "";
+      paint();
+    });
+    TaneeshUI.initCommon();
+  </script>
+</body>
+</html>

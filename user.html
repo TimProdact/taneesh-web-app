@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Профиль</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-shell="stack" class="has-cta">
+  <header class="header t-app-bar" id="header">
+    <div class="wrap header-inner">
+      <a class="icon-btn t-icon-button" href="people.html" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></a>
+      <h1 class="header-title" id="barTitle">Профиль</h1>
+      <div class="header-spacer"></div>
+      <a class="icon-btn t-icon-button" href="blocking-reason.html" aria-label="Ещё"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></a>
+    </div>
+  </header>
+  <main><div class="wrap page-pad" id="root"></div></main>
+  <div class="t-sticky-cta wrap" id="cta"></div>
+  <div class="toast" id="toast"></div>
+  <script src="assets/app.js"></script>
+  <script>
+    const p = TaneeshUI.userById(TaneeshUI.query("id"));
+    document.getElementById("barTitle").textContent = p.first || p.name;
+    document.getElementById("root").innerHTML = `
+      <div class="detail-hero"><img src="${p.img}" alt="" /></div>
+      <p class="detail-meta">${p.online ? "Онлайн" : "Был(а) недавно"} · ${p.meta}</p>
+      <h2 class="detail-title">${p.name}</h2>
+      <p class="detail-body">${p.bio || ""}</p>
+      <div class="types types-auto"><span class="t-chip">Джаз</span><span class="t-chip">Стендап</span></div>
+    `;
+    document.getElementById("cta").innerHTML = `<a class="t-button t-button--primary" href="chat.html?id=${p.id}">Написать</a>`;
+    TaneeshUI.initCommon();
+  </script>
+</body>
+</html>

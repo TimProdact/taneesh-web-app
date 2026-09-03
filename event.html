@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Событие</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-shell="stack" class="has-cta">
+  <header class="header t-app-bar" id="header">
+    <div class="wrap header-inner">
+      <a class="icon-btn t-icon-button" href="index.html" aria-label="Назад">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </a>
+      <h1 class="header-title" id="barTitle">Событие</h1>
+      <div class="header-spacer"></div>
+      <button class="icon-btn t-icon-button" type="button" data-toast="Ещё" aria-label="Ещё">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+      </button>
+    </div>
+  </header>
+  <main>
+    <div class="wrap page-pad" id="root"></div>
+  </main>
+  <div class="t-sticky-cta wrap" id="cta"></div>
+  <div class="toast" id="toast"></div>
+  <script src="assets/app.js"></script>
+  <script>
+    const U = TaneeshUI;
+    const ev = U.eventById(U.query("id"));
+    document.getElementById("barTitle").textContent = ev.title;
+    document.title = "Taneesh — " + ev.title;
+    const comments = TaneeshData.comments.filter((c) => c.eventId === ev.id);
+    const similar = U.allEvents().filter((e) => e.id !== ev.id).slice(0, 4);
+    document.getElementById("root").innerHTML = `
+      <div class="detail-hero media-scrim">
+        <img src="${ev.img}" alt="" />
+        <span class="price ${ev.free ? "free" : "paid"}">${ev.price}</span>
+        <span class="heart t-glass-icon ${ev.liked ? "is-on" : ""}" data-like="detail" role="button" aria-label="Избранное">
+          <svg viewBox="0 0 24 24" fill="${ev.liked ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-9.2-8.2A5.2 5.2 0 0112 5.1a5.2 5.2 0 019.2 6.7C19 15.6 12 20 12 20z"/></svg>
+        </span>
+      </div>
+      <h2 class="detail-title">${ev.title}</h2>
+      <p class="detail-meta">${ev.date}</p>
+      <a class="detail-row" href="map.html?id=${ev.id}">
+        <div><strong>${ev.address || "Ташкент"}</strong><span>Открыть карту</span></div>
+      </a>
+      <div class="types types-auto">${ev.types.map((t) => `<span class="type t-chip">${t}</span>`).join("")}</div>
+      <p class="detail-body is-clamped" id="desc">${ev.desc || ""}</p>
+      <button class="detail-more" type="button" id="more">Читать далее</button>
+      <div class="section-head"><h2>Тоже хотят пойти</h2><a class="show-all" href="want-go.html?id=${ev.id}">Все</a></div>
+      <div class="rail">${TaneeshData.profiles.slice(0, 5).map((p) => U.profileCard(p)).join("")}</div>
+      <div class="section-head"><h2>Комментарии</h2><a class="show-all" href="event-comments.html?id=${ev.id}">Все</a></div>
+      <div class="comments">${(comments.length ? comments : TaneeshData.comments).map((c) => `
+        <a class="comment" href="event-comments.html?id=${ev.id}">
+          ${U.avatar(c.av, { size: "sm" })}
+          <div><div class="comment-top"><strong>${c.user}</strong><time>${c.time}</time></div>
+          <p class="comment-text">${c.text}</p></div>
+        </a>`).join("")}</div>
+      <p><a class="t-button t-button--ghost t-button--block" href="add-comment.html?id=${ev.id}">Написать комментарий</a></p>
+      <div class="section-head"><h2>Похожие</h2><a class="show-all" href="similar-events.html?id=${ev.id}">Все</a></div>
+      <div class="rail">${similar.map((e, i) => U.eventCard(e, i, "sim")).join("")}</div>
+    `;
+    document.getElementById("cta").innerHTML = `<a class="t-button t-button--primary" href="${ev.free ? "want-go.html?id=" + ev.id : "#"}" data-toast="${ev.free ? "Отметили, что идёте" : "Покупка билета"}">${ev.free ? "Хочу пойти" : "Купить билет · " + ev.price}</a>`;
+    document.getElementById("more").addEventListener("click", (e) => {
+      document.getElementById("desc").classList.remove("is-clamped");
+      e.target.hidden = true;
+    });
+    U.initRails();
+    U.initCommon();
+  </script>
+</body>
+</html>

@@ -12,6 +12,9 @@
 <body data-page="home">
   <header class="header t-app-bar" id="header">
     <div class="wrap header-inner">
+      <a class="brand-logo" href="index.html" aria-label="Taneesh">
+        <img src="assets/brand/taneesh-wordmark.svg" alt="Taneesh" />
+      </a>
       <button class="city" type="button" data-toast="Выберите город">
         Чиланзар
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
@@ -20,10 +23,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         <input type="search" placeholder="Поиск мероприятий по названию" id="searchInput" />
       </label>
-      <span class="premium">Free</span>
-      <button class="avatar t-avatar t-avatar--md" type="button" data-toast="Профиль" aria-label="Профиль">
+      <a class="premium" href="premium.html">Free</a>
+      <a class="avatar t-avatar t-avatar--md" href="profile.html" aria-label="Профиль">
         <img src="assets/showcase/avatar.png" alt="" />
-      </button>
+      </a>
     </div>
   </header>
 
@@ -40,7 +43,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Мои подборки</h2>
-          <button class="show-all" type="button" data-toast="Мои подборки">Все</button>
+          <a class="show-all" href="my-selections.html">Все</a>
         </div>
         <div class="rail-wrap" data-rail>
           <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -64,7 +67,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Бесплатные мероприятия</h2>
-          <button class="show-all" type="button" data-toast="Бесплатные мероприятия">Все</button>
+          <a class="show-all" href="free-events.html">Все</a>
         </div>
         <div class="rail-wrap" data-rail>
           <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -76,7 +79,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Новые комментарии</h2>
-          <button class="show-all" type="button" data-toast="Комментарии">Все</button>
+          <a class="show-all" href="comments.html">Все</a>
         </div>
         <div class="comments" id="comments"></div>
       </section>
@@ -95,13 +98,10 @@
   <script>
     const D = TaneeshData;
     const U = TaneeshUI;
-    const all = [...D.selectionEvents, ...D.freeEvents,
-      { title: "Live Jazz Hall", date: "14 апр, 21:00", price: "от 60 000", free: false, views: "870", likes: "55", types: ["Концерт"], img: "assets/showcase/concert2.png", liked: false },
-      { title: "Startup Demo Day", date: "18 апр, 12:00", price: "от 90 000", free: false, views: "1.5k", likes: "99", types: ["Стартапы"], img: "assets/showcase/cover4.jpg", liked: false },
-    ];
+    const all = U.allEvents();
 
     document.getElementById("banners").innerHTML = D.banners.map((b) => `
-      <a class="banner" href="#"><img src="${b.img}" alt="" loading="lazy" />
+      <a class="banner" href="event.html?id=${b.id}"><img src="${b.img}" alt="" loading="lazy" />
         <div class="banner-copy"><h3>${b.title}</h3><p>${b.desc}</p><span class="cta t-button t-button--primary">Посмотреть</span></div>
       </a>`).join("");
     document.getElementById("selections").innerHTML = D.selectionEvents.map((e, i) => U.eventCard(e, i, "sel")).join("");
@@ -109,17 +109,20 @@
     document.getElementById("allEvents").innerHTML = all.map((e, i) => U.gridCard(e, i)).join("");
     document.getElementById("profiles").innerHTML = D.profiles.slice(0, 5).map((p) => U.profileCard(p)).join("");
     document.getElementById("comments").innerHTML = D.comments.map((c) => `
-      <button type="button" class="comment" data-toast="${c.event}">
+      <a class="comment" href="event.html?id=${c.eventId}">
         <div class="comment-av t-avatar t-avatar--sm"><img src="${c.av}" alt="" /></div>
         <div>
           <div class="comment-top"><strong>${c.user}</strong><time>${c.time}</time></div>
           <p class="comment-text">${c.text}</p>
           <span class="comment-event"><img src="${c.eventImg}" alt="" />${c.event}</span>
         </div>
-      </button>`).join("");
+      </a>`).join("");
 
     document.getElementById("searchInput")?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") U.toast(`Поиск: ${e.target.value || "…"}`);
+      if (e.key === "Enter") {
+        e.preventDefault();
+        location.href = "search.html?q=" + encodeURIComponent(e.target.value || "");
+      }
     });
     U.initRails();
     U.initCommon();

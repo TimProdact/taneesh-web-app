@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-shell="auth">
+  <main>
+    <div class="wrap page-pad">
+      <div class="auth-screen">
+        <div>
+          <img class="auth-logo" src="assets/brand/taneesh-logo-round.png" alt="Taneesh" />
+          <h1 class="detail-title">Taneesh</h1>
+          <p class="detail-meta">События и знакомства в Ташкенте</p>
+        </div>
+        <div class="auth-actions">
+          <a class="t-button t-button--primary t-button--block" href="login.html">Войти</a>
+          <a class="t-button t-button--ghost t-button--block" href="onboarding.html">Начать</a>
+          <a class="t-button t-button--ghost t-button--block" href="updater.html">Проверить обновление</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="assets/app.js"></script>
+  <script>TaneeshUI.initCommon();</script>
+</body>
+</html>

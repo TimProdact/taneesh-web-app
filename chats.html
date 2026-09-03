@@ -13,6 +13,10 @@
   <header class="header t-app-bar" id="header">
     <div class="wrap header-inner">
       <h1 class="header-title">Чаты</h1>
+      <div class="header-spacer"></div>
+      <a class="icon-btn t-icon-button" href="chat-request.html" aria-label="Запросы">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </a>
     </div>
   </header>
 
@@ -21,7 +25,7 @@
       <section class="section section--flush">
         <div class="section-head">
           <h2>Интересуются вами</h2>
-          <button class="show-all" type="button" data-toast="Все">Все</button>
+          <a class="show-all" href="interests-you.html">Все</a>
         </div>
         <div class="rail interested-rail" id="interested"></div>
       </section>
@@ -40,7 +44,7 @@
     document.getElementById("interested").innerHTML = TaneeshData.interested.map((p) => TaneeshUI.profileCard(p)).join("");
 
     document.getElementById("chats").innerHTML = TaneeshData.chats.map((c) => `
-      <button type="button" class="chat-item" data-toast="${c.name}">
+      <a class="chat-item" href="${TaneeshUI.chatHref(c)}">
         ${TaneeshUI.avatar(c.img, { size: "lg", online: c.online, alt: c.name })}
         <div class="u-min-0">
           <div class="chat-name">${c.name}</div>
@@ -50,7 +54,7 @@
           <div>${c.time}</div>
           ${c.unread ? `<span class="chat-unread t-badge">${c.unread}</span>` : ""}
         </div>
-      </button>`).join("");
+      </a>`).join("");
 
     TaneeshUI.initCommon();
   </script>
