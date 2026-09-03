@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Рядом</title>
+  <meta name="theme-color" content="#0f0f0f" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body>
+  <!-- NearScreen: UsersAppBar title near.near_title + map + filter -->
+  <header class="header" id="header">
+    <div class="wrap header-inner">
+      <button class="icon-btn" type="button" data-toast="Карта" aria-label="Карта">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3V7z"/><path d="M9 4v13M15 7v13"/></svg>
+      </button>
+      <h1 class="header-title">Рядом</h1>
+      <div class="header-spacer"></div>
+      <button class="icon-btn" type="button" data-toast="Фильтры" aria-label="Фильтры">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap page-pad">
+      <!-- Near: vertical swipe cards → web stack of large event cards -->
+      <div class="near-stack" id="near"></div>
+    </div>
+  </main>
+
+  <nav class="nav" aria-label="Навигация">
+    <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3.2 3 10.2V21h6.5v-6h5V21H21V10.2L12 3.2z"/></svg>Главная</a>
+    <a class="is-active" href="near.html"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s7-5.2 7-11a7 7 0 10-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5" fill="#0f0f0f"/></svg>Рядом</a>
+    <a href="favorites.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-9.2-8.2A5.2 5.2 0 0112 5.1a5.2 5.2 0 019.2 6.7C19 15.6 12 20 12 20z"/></svg>Избранное</a>
+    <a href="people.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0111 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15 19a4.2 4.2 0 015.5-4"/></svg>Люди</a>
+    <a href="chats.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18.5 4 21l3.2-1.2A9 9 0 1012 21a8.8 8.8 0 01-4.4-1.2L5 18.5z"/></svg>Чат</a>
+  </nav>
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    document.getElementById("near").innerHTML = TaneeshData.nearEvents.map((ev) => `
+      <button type="button" class="near-card" data-toast="${ev.title}">
+        <img src="${ev.img}" alt="" loading="lazy" />
+        <span class="price ${ev.free ? "free" : "paid"}" style="z-index:2">${ev.price}</span>
+        <span class="heart ${ev.liked ? "is-on" : ""}" data-like="near" role="button" style="z-index:2">
+          <svg viewBox="0 0 24 24" fill="${ev.liked ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-9.2-8.2A5.2 5.2 0 0112 5.1a5.2 5.2 0 019.2 6.7C19 15.6 12 20 12 20z"/></svg>
+        </span>
+        <div class="near-copy">
+          <h3>${ev.title}</h3>
+          <p>${ev.address}</p>
+          <div class="types">${ev.types.map((t) => `<span class="type">${t}</span>`).join("")}</div>
+        </div>
+      </button>
+    `).join("");
+    TaneeshUI.initCommon();
+  </script>
+</body>
+</html>

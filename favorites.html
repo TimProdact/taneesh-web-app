@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Избранное</title>
+  <meta name="theme-color" content="#0f0f0f" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body>
+  <!-- FavoriteScreen: title Избранное + tabs Мероприятия / Люди -->
+  <header class="header" id="header">
+    <div class="wrap header-inner">
+      <h1 class="header-title">Избранное</h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap page-pad">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab is-active" data-tab="events">Мероприятия</button>
+        <button type="button" class="tab" data-tab="people">Люди</button>
+      </div>
+
+      <div id="tab-events">
+        <div class="grid" id="favEvents"></div>
+      </div>
+      <div id="tab-people" hidden>
+        <div class="users-grid" id="favPeople"></div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="nav" aria-label="Навигация">
+    <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3.2 3 10.2V21h6.5v-6h5V21H21V10.2L12 3.2z"/></svg>Главная</a>
+    <a href="near.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.2 7-11a7 7 0 10-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Рядом</a>
+    <a class="is-active" href="favorites.html"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-9.2-8.2A5.2 5.2 0 0112 5.1a5.2 5.2 0 019.2 6.7C19 15.6 12 20 12 20z"/></svg>Избранное</a>
+    <a href="people.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0111 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15 19a4.2 4.2 0 015.5-4"/></svg>Люди</a>
+    <a href="chats.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18.5 4 21l3.2-1.2A9 9 0 1012 21a8.8 8.8 0 01-4.4-1.2L5 18.5z"/></svg>Чат</a>
+  </nav>
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    const favEvents = TaneeshData.selectionEvents.map((e) => ({ ...e, liked: true }));
+    const favPeople = TaneeshData.profiles.slice(0, 4);
+
+    document.getElementById("favEvents").innerHTML = favEvents.map((e, i) => TaneeshUI.gridCard(e, i, "fav")).join("");
+    document.getElementById("favPeople").innerHTML = favPeople.map((p) => `
+      <button type="button" class="user-card" data-toast="${p.name}">
+        <div class="user-avatar"><img src="${p.img}" alt="" loading="lazy" /></div>
+        <strong style="display:block;margin-top:10px;font-size:15px;font-weight:700">${p.name}</strong>
+        <span style="font-size:13px;color:var(--muted)">${p.meta}</span>
+      </button>`).join("");
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((t) => t.classList.remove("is-active"));
+        tab.classList.add("is-active");
+        const isEvents = tab.dataset.tab === "events";
+        document.getElementById("tab-events").hidden = !isEvents;
+        document.getElementById("tab-people").hidden = isEvents;
+      });
+    });
+
+    TaneeshUI.initCommon();
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taneesh — Главная</title>
+  <meta name="theme-color" content="#0f0f0f" />
+  <link rel="icon" href="assets/brand/taneesh-logo-round.png" />
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="wrap header-inner">
+      <button class="city" type="button" data-toast="Выберите город">
+        Чиланзар
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="search" placeholder="Поиск мероприятий по названию" id="searchInput" />
+      </label>
+      <span class="premium">Free</span>
+      <button class="avatar" type="button" data-toast="Профиль" aria-label="Профиль">
+        <img src="assets/showcase/avatar.png" alt="" />
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap page-pad">
+      <section class="banners-block section" style="margin-top:0">
+        <div class="rail-wrap" data-rail>
+          <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="rail" id="banners"></div>
+          <button class="rail-btn next" type="button" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Мои подборки</h2>
+          <button class="more" type="button" data-toast="Мои подборки" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="rail-wrap" data-rail>
+          <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="rail" id="selections"></div>
+          <button class="rail-btn next" type="button" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Новые профили</h2>
+          <a class="more" href="people.html" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a>
+        </div>
+        <div class="rail-wrap" data-rail>
+          <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="rail" id="profiles"></div>
+          <button class="rail-btn next" type="button" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Бесплатные мероприятия</h2>
+          <button class="more" type="button" data-toast="Бесплатные мероприятия" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="rail-wrap" data-rail>
+          <button class="rail-btn prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <div class="rail" id="free"></div>
+          <button class="rail-btn next" type="button" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Новые комментарии</h2>
+          <button class="more" type="button" data-toast="Комментарии" aria-label="Показать все"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+        <div class="comments" id="comments"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>Все мероприятия</h2></div>
+        <div class="grid" id="allEvents"></div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="nav" aria-label="Навигация">
+    <a class="is-active" href="index.html">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2 3 10.2V21h6.5v-6h5V21H21V10.2L12 3.2z"/></svg>
+      Главная
+    </a>
+    <a href="near.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.2 7-11a7 7 0 10-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Рядом
+    </a>
+    <a href="favorites.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-9.2-8.2A5.2 5.2 0 0112 5.1a5.2 5.2 0 019.2 6.7C19 15.6 12 20 12 20z"/></svg>
+      Избранное
+    </a>
+    <a href="people.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0111 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15 19a4.2 4.2 0 015.5-4"/></svg>
+      Люди
+    </a>
+    <a href="chats.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18.5 4 21l3.2-1.2A9 9 0 1012 21a8.8 8.8 0 01-4.4-1.2L5 18.5z"/></svg>
+      Чат
+    </a>
+  </nav>
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    const D = TaneeshData;
+    const U = TaneeshUI;
+    const all = [...D.selectionEvents, ...D.freeEvents,
+      { title: "Live Jazz Hall", date: "14 апр, 21:00", price: "от 60 000", free: false, views: "870", likes: "55", types: ["Концерт"], img: "assets/showcase/concert2.png", liked: false },
+      { title: "Startup Demo Day", date: "18 апр, 12:00", price: "от 90 000", free: false, views: "1.5k", likes: "99", types: ["Стартапы"], img: "assets/showcase/cover4.jpg", liked: false },
+    ];
+
+    document.getElementById("banners").innerHTML = D.banners.map((b) => `
+      <a class="banner" href="#"><img src="${b.img}" alt="" loading="lazy" />
+        <div class="banner-copy"><h3>${b.title}</h3><p>${b.desc}</p><span class="cta">Посмотреть</span></div>
+      </a>`).join("");
+    document.getElementById("selections").innerHTML = D.selectionEvents.map((e, i) => U.eventCard(e, i, "sel")).join("");
+    document.getElementById("free").innerHTML = D.freeEvents.map((e, i) => U.eventCard(e, i, "free")).join("");
+    document.getElementById("allEvents").innerHTML = all.map((e, i) => U.gridCard(e, i)).join("");
+    document.getElementById("profiles").innerHTML = D.profiles.slice(0, 5).map((p) => `
+      <button type="button" class="user" data-toast="${p.name}">
+        <div class="user-avatar"><img src="${p.img}" alt="" loading="lazy" /></div>
+        <strong>${p.name}</strong><span>${p.meta}</span>
+      </button>`).join("");
+    document.getElementById("comments").innerHTML = D.comments.map((c) => `
+      <button type="button" class="comment" data-toast="${c.event}">
+        <div class="comment-av"><img src="${c.av}" alt="" /></div>
+        <div>
+          <div class="comment-top"><strong>${c.user}</strong><time>${c.time}</time></div>
+          <p class="comment-text">${c.text}</p>
+          <span class="comment-event"><img src="${c.eventImg}" alt="" />${c.event}</span>
+        </div>
+      </button>`).join("");
+
+    document.getElementById("searchInput")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") U.toast(`Поиск: ${e.target.value || "…"}`);
+    });
+    U.initRails();
+    U.initCommon();
+  </script>
+</body>
+</html>
