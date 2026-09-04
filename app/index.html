@@ -18,18 +18,19 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Taneesh — события и знакомства">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="tana">
+  <meta name="apple-mobile-web-app-title" content="Taneesh">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>tana</title>
+  <title>Taneesh</title>
   <link rel="manifest" href="manifest.json">
 
   <!-- Google Maps JS SDK (same key as Android / iOS AppDelegate) -->
@@ -40,9 +41,100 @@
       margin: 0;
       background: #F2F2F7;
     }
+
+    #flutter-loading {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F2F2F7;
+      transition: opacity 280ms ease, visibility 280ms ease;
+    }
+
+    #flutter-loading.is-done {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .flutter-loading__phone {
+      width: min(100%, 390px);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: #FFFFFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .flutter-loading__logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      animation: flutter-loading-pulse 1.4s ease-in-out infinite;
+    }
+
+    .flutter-loading__brand {
+      margin: 0;
+      font: 700 22px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+      color: #111111;
+      letter-spacing: -0.02em;
+    }
+
+    .flutter-loading__hint {
+      margin: 0;
+      font: 400 14px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+      color: #8E8E93;
+    }
+
+    .flutter-loading__spinner {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 3px solid #E5E5EA;
+      border-top-color: #34C759;
+      animation: flutter-loading-spin 0.75s linear infinite;
+    }
+
+    @keyframes flutter-loading-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes flutter-loading-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.04); opacity: 0.88; }
+    }
   </style>
 </head>
 <body>
+  <div id="flutter-loading" aria-live="polite" aria-busy="true">
+    <div class="flutter-loading__phone">
+      <img class="flutter-loading__logo" src="taneesh-logo-round.png" alt="Taneesh" width="72" height="72" />
+      <p class="flutter-loading__brand">Taneesh</p>
+      <div class="flutter-loading__spinner" role="progressbar" aria-label="Загрузка"></div>
+      <p class="flutter-loading__hint">Загрузка…</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      function hideLoading() {
+        var el = document.getElementById('flutter-loading');
+        if (!el || el.classList.contains('is-done')) return;
+        el.classList.add('is-done');
+        el.setAttribute('aria-busy', 'false');
+        setTimeout(function () { el.remove(); }, 320);
+      }
+
+      window.addEventListener('flutter-first-frame', hideLoading);
+      // Fallback if the event is missed (slow/cached edge cases).
+      setTimeout(hideLoading, 20000);
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
